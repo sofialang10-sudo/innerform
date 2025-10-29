@@ -4,7 +4,8 @@ import { cn } from "@/lib/utils"
 
 interface HeroProps {
   title: string
-  subtitle: string
+  subtitle?: string
+  tagline?: string
   primaryCta?: {
     label: string
     href?: string
@@ -17,20 +18,85 @@ interface HeroProps {
   }
   image?: ReactNode
   className?: string
+  variant?: "gradient" | "light"
 }
 
 export default function Hero({
   title,
   subtitle,
+  tagline,
   primaryCta,
   secondaryCta,
   image,
   className,
+  variant = "gradient",
 }: HeroProps) {
+  if (variant === "gradient") {
+    return (
+      <section
+        className={cn(
+          "relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden",
+          className
+        )}
+      >
+        {/* Subtle noise texture overlay */}
+        <div
+          className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{
+            backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
+            backgroundRepeat: 'repeat',
+            backgroundSize: '200px 200px'
+          }}
+        />
+
+        <div className="relative z-10 text-center px-6 max-w-6xl mx-auto py-32">
+          {tagline && (
+            <p className="text-xl md:text-2xl italic font-serif text-white/90 mb-6 animate-fade-in">
+              {tagline}
+            </p>
+          )}
+
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-white leading-[1.1] tracking-tight mb-8 animate-fade-in"
+            style={{ animationDelay: '0.1s', fontWeight: 800 }}>
+            {title}
+          </h1>
+
+          {subtitle && (
+            <p className="text-xl md:text-2xl text-white/90 mb-16 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              {subtitle}
+            </p>
+          )}
+
+          {(primaryCta || secondaryCta) && (
+            <div className="flex gap-4 justify-center flex-wrap animate-fade-in" style={{ animationDelay: '0.3s' }}>
+              {primaryCta && (
+                <Button variant="default" size="lg">
+                  {primaryCta.label}
+                </Button>
+              )}
+              {secondaryCta && (
+                <Button variant="secondary" size="lg">
+                  {secondaryCta.label}
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
+
+        {image && (
+          <div className="absolute bottom-0 w-full max-w-4xl mx-auto left-1/2 -translate-x-1/2 opacity-90 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            {image}
+          </div>
+        )}
+      </section>
+    )
+  }
+
+  // Light variant (original)
   return (
     <section
       className={cn(
-        "relative pt-32 pb-20 md:pt-40 md:pb-28 lg:pt-48 lg:pb-32 overflow-hidden",
+        "relative pt-40 pb-28 md:pt-48 md:pb-32 lg:pt-56 lg:pb-40 overflow-hidden",
         className
       )}
     >
@@ -47,23 +113,30 @@ export default function Hero({
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
           <div className="space-y-8 animate-fade-in">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-[var(--foreground)] leading-[1.1] tracking-tight">
+            {tagline && (
+              <p className="text-xl italic font-serif text-[var(--muted-foreground)]">
+                {tagline}
+              </p>
+            )}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-[var(--foreground)] leading-[1.1] tracking-tight" style={{ fontWeight: 800 }}>
               {title}
             </h1>
-            <p className="text-lg sm:text-xl lg:text-2xl text-[var(--muted-foreground)] max-w-2xl leading-relaxed">
-              {subtitle}
-            </p>
+            {subtitle && (
+              <p className="text-xl sm:text-2xl lg:text-3xl text-[var(--muted-foreground)] max-w-2xl leading-relaxed">
+                {subtitle}
+              </p>
+            )}
 
             {/* CTA Buttons */}
             {(primaryCta || secondaryCta) && (
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 {primaryCta && (
-                  <Button size="xl" className="text-base sm:text-lg shadow-lg hover:shadow-xl transition-shadow">
+                  <Button size="lg">
                     {primaryCta.label}
                   </Button>
                 )}
                 {secondaryCta && (
-                  <Button size="xl" variant="outline" className="text-base sm:text-lg border-2 hover:bg-white/50 transition-all">
+                  <Button size="lg" variant="outline">
                     {secondaryCta.label}
                   </Button>
                 )}

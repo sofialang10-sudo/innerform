@@ -26,47 +26,52 @@ export default function PricingCard({
   return (
     <Card
       className={cn(
-        "relative hover:shadow-xl transition-all duration-300",
-        isPopular && "border-[var(--primary)] border-2 scale-105",
+        "relative hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-smooth h-full flex flex-col",
+        isPopular && "border-[var(--primary)] border-2 shadow-xl ring-4 ring-indigo-50",
         className
       )}
     >
       {isPopular && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-          <Badge variant="secondary" className="px-4 py-1">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+          <Badge variant="secondary" className="px-5 py-1.5 text-sm font-semibold shadow-md">
             Most Popular
           </Badge>
         </div>
       )}
 
-      <CardHeader>
-        <CardTitle className="text-2xl">{name}</CardTitle>
-        <CardDescription className="text-base">{description}</CardDescription>
-        <div className="mt-4">
-          <span className="text-4xl font-bold text-[var(--foreground)]">
+      <CardHeader className="pb-8">
+        <CardTitle className="text-2xl mb-2">{name}</CardTitle>
+        <CardDescription className="text-base leading-relaxed">{description}</CardDescription>
+        <div className="mt-6 flex items-baseline gap-1">
+          <span className="text-5xl font-bold text-[var(--foreground)] tracking-tight">
             {price}
           </span>
-          {price !== "Custom" && <span className="text-[var(--muted-foreground)]">/month</span>}
+          {price !== "Custom" && (
+            <span className="text-lg text-[var(--muted-foreground)] ml-1">/month</span>
+          )}
         </div>
       </CardHeader>
 
-      <CardContent>
-        <ul className="space-y-3">
+      <CardContent className="flex-1">
+        <ul className="space-y-4">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-start gap-3">
-              <div className="w-5 h-5 rounded-full bg-[var(--accent)]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Check className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <li key={index} className="flex items-start gap-3 group/item">
+              <div className="w-6 h-6 rounded-full bg-[var(--accent)]/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-[var(--accent)]/20 transition-colors">
+                <Check className="w-4 h-4 text-[var(--accent)]" strokeWidth={3} />
               </div>
-              <span className="text-sm text-[var(--foreground)]">{feature}</span>
+              <span className="text-sm text-[var(--foreground)] leading-relaxed">{feature}</span>
             </li>
           ))}
         </ul>
       </CardContent>
 
-      <CardFooter>
+      <CardFooter className="pt-6">
         <Button
           variant={isPopular ? "default" : "outline"}
-          className="w-full"
+          className={cn(
+            "w-full transition-all duration-300",
+            isPopular && "shadow-lg hover:shadow-xl"
+          )}
           size="lg"
         >
           {ctaLabel}

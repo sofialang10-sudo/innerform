@@ -35,8 +35,8 @@ export default function Home() {
 
             {/* Card 1 - Takes 2 columns, dark background */}
             <div className="lg:col-span-2 bg-[var(--navy)] rounded-3xl p-12 text-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
-              <div className="w-16 h-16 bg-[var(--accent-lime)] rounded-2xl flex items-center justify-center mb-6">
-                <Sparkles className="w-8 h-8 text-black" />
+              <div className="w-16 h-16 bg-[var(--accent-teal)] rounded-2xl flex items-center justify-center mb-6">
+                <Sparkles className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">Pre-Vetted Excellence</h3>
               <p className="text-white/80 text-lg md:text-xl leading-relaxed">
@@ -226,19 +226,19 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-12 text-center">
             <div className="space-y-4">
-              <div className="text-6xl md:text-7xl font-extrabold text-[var(--accent-lime)]" style={{ fontWeight: 800 }}>62%</div>
+              <div className="text-6xl md:text-7xl font-extrabold text-[var(--accent-teal)]" style={{ fontWeight: 800 }}>62%</div>
               <p className="text-lg md:text-xl text-white/80">
                 of freelancers face payment delays
               </p>
             </div>
             <div className="space-y-4">
-              <div className="text-6xl md:text-7xl font-extrabold text-[var(--accent-lime)]" style={{ fontWeight: 800 }}>10-20%</div>
+              <div className="text-6xl md:text-7xl font-extrabold text-[var(--accent-teal)]" style={{ fontWeight: 800 }}>10-20%</div>
               <p className="text-lg md:text-xl text-white/80">
                 industry standard commission
               </p>
             </div>
             <div className="space-y-4">
-              <div className="text-6xl md:text-7xl font-extrabold text-[var(--accent-lime)]" style={{ fontWeight: 800 }}>5-8%</div>
+              <div className="text-6xl md:text-7xl font-extrabold text-[var(--accent-teal)]" style={{ fontWeight: 800 }}>5-8%</div>
               <p className="text-lg md:text-xl text-white/80">
                 Innerform's fair commission
               </p>

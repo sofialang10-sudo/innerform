@@ -23,7 +23,7 @@
   --gradient-orange: #FFA36C;
   --gradient-purple: #A78BFA;
   --gradient-blue: #60A5FA;
-  --accent-lime: #D4FF00;
+  --accent-teal: #34D399;
   --navy: #0F172A;
 }
 
@@ -47,7 +47,7 @@
   --color-gradient-orange: var(--gradient-orange);
   --color-gradient-purple: var(--gradient-purple);
   --color-gradient-blue: var(--gradient-blue);
-  --color-accent-lime: var(--accent-lime);
+  --color-accent-teal: var(--accent-teal);
   --color-navy: var(--navy);
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-serif: 'Merriweather', 'Georgia', serif;
@@ -181,7 +181,7 @@ section {
 
   /* Better focus states */
   *:focus-visible {
-    outline: 2px solid var(--accent-lime);
+    outline: 2px solid var(--accent-teal);
     outline-offset: 4px;
   }
 }
